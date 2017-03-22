@@ -63,6 +63,8 @@
     $date_id = array();
 	$site_id = array();
 	$site_name = array();
+	$flag1=1;
+	$flag2=2;
 	
 	show_valid_days(5,5);
 	$sites_n = get_sites();
@@ -106,8 +108,9 @@
 							
 							<?php
 							/*TODO:根据usrid判断是否是我的预约，如果是我的预约则有取消选项，具体几个按钮和前端商量*/
-							if($result['borrow_id']==$user_id){
-								echo "cancel";
+							if($result['borrow_id']==$user_id){?>
+								<button id="s<?=$site_id[$j]?>-d<?=$date_id[$index]?>-p<?=$i?>-2" class="borr-cancel" >退订</button>
+							<?php
 							}
 						}
 						?>
@@ -125,3 +128,4 @@
 ?>
 <script src="js/jquery-3.2.0.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/index2.js"></script>

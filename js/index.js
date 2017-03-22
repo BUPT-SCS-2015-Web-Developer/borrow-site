@@ -12,7 +12,7 @@ $(".borr-qry").click(function (){
 		},
 		complete:function(){
 			$("#"+str).html("已预约");
-			//$("#"+str).removeAttr("disabled");
+		
 		}
 	})
-})
+}	)
