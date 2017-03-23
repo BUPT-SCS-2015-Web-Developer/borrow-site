@@ -5,13 +5,16 @@ $(".borr-qry").click(function (){
 	$.ajax({
 		url:"borr_work.php",
 		type:"POST",
+		dataType:'json',
 		data:{
 			site_id:borr_info[0],
 			borr_date:borr_info[1],
 			borr_period:borr_info[2],
 		},
-		complete:function(){
-			$("#"+str).html("已预约");
+		complete:function(data){
+			if (data.responseText==0) $("#"+str).html("已预约");
+			else alert("申请失败");
+			
 		
 		}
 	})
