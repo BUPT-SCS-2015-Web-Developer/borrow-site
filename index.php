@@ -59,69 +59,160 @@
     include "assets/db_config.php";
     include "assets/connect.php";
 
-    $date = array();
-    $date_id = array();
-	$site_id = array();
-	$site_name = array();
+ //    $date = array();
+ //    $date_id = array();
+	// $site_id = array();
+	// $site_name = array();
 	
-	show_valid_days(5,5);
-	$sites_n = get_sites();
+	// show_valid_days(5,5);
+	// $sites_n = get_sites();
 	
-	for($j=0;$j<$sites_n;$j++) {
+	// for($j=0;$j<$sites_n;$j++) {
 		?>
-		<div><?=$site_name[$j]?></div>
-		<?php
-			$index = 0;
-			foreach($date as $eachdate) {
-			?>
-			<!--TODO:增加样式-->
-			<div>
-			<?=$eachdate?>
+	<!-- 	<div><?=$site_name[$j]?></div> -->
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <script src="js/jquery-3.2.0.min.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<script src="js/common.js"></script>
+
+	<link rel="stylesheet" href="css/materialize.min.css">
+	<link rel="stylesheet" href="css/common.css">
+</head>		
+<html>
+	<!-- 之前有部分PHP控制的内容被我转移到了PHPcontrol.html,当时尚不清楚设计如何就先将代码移动过去了 -->
+	<!-- 放标题的部分，也方便以后加新功能 -->
+	<div id="top">
+		<div class="container">
+			<div id="title" class="left">易班场地预约</div>
+		</div>
+	</div>
+
+	<!-- 主体部分 -->
+	<div id="main">
+		<div id="mainbar" class="container">
+
+			<!-- note是显示不同类型预约情况是什么样的
+			不能预约的是蓝色的，后面.time的class是disabled
+			能预约的是粉色的，后面.time的class是abled -->
+			<div class="note valign-wrapper">
+				<ul class="right">
+					<li class="status sta1 left">
+						<div class="sta1-smp left"></div>
+						<div class="sta-desc sta1-desc right">已预约场地</div>
+					</li>
+					<li class="status sta2 right">
+						<div class="sta2-smp left"></div>
+						<div class="sta-desc sta2-desc right">可预约场地</div>
+					</li>
+				</ul>
 			</div>
-			<!--end-->
-			<?php 
-				for($i=0;$i<4;$i++){
-					?>
-					<div><?=9+2*$i?>点~<?=11+2*$i?>点</div>
-					<?php
-						try{
-							$query = $DBH->prepare("select count(*),borrow_id from borrow_info where site_id=? and date=? and period = ?");
-							$query->bindParam(1,$site_id[$j]);
-							$query->bindParam(2,$date_id[$index]);
-							$query->bindParam(3,$i);
-							$query->execute();
-							$result=$query->fetch();
-							$ifborred=$result['count(*)'];
-						
-						}catch(PDOException $e){
-							die($e->getMessage());
-						}
-						if($ifborred == 0){
-					?>
-					<button id="s<?=$site_id[$j]?>-d<?=$date_id[$index]?>-p<?=$i?>" class="borr-qry">预约</button>
-					<?php
-						}else{
-							?>
-							<button id="s<?=$site_id[$j]?>-d<?=$date_id[$index]?>-p<?=$i?>" class="borr-qry" disabled="disabled">已预约</button>
-							
-							<?php
-							/*TODO:根据usrid判断是否是我的预约，如果是我的预约则有取消选项，具体几个按钮和前端商量*/
-							if($result['borrow_id']==$user_id){
-								echo "cancel";
-							}
-						}
-						?>
-					<?php
-				}
-			?>
-			<?php
-				$index++;
-			}
-			?>
-		
-		<?php
-	}
-	
-?>
-<script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/index.js"></script>
+
+			<!-- 这里开始#field就是主题部分啦，.fb是三个部分的通用classname，分别是.fb1 .fb2 .fb3 -->
+			<!-- TODO：点击每一个.time的时候能获取到fb的编号，这样就能输出是什么区域了 -->
+			<!-- TODO：点击每个.time就会弹出模态框去要求用户核对信息，填写信息 -->
+			<ul id="field">
+				<li class="fb fb1 z-depth-2">
+					<div class="row">
+						<div class="col s5">
+							<div class="fb-img center z-depth-2">
+								<img src="img/fb1.jpg" style="width:100%; height:100%;" alt="">
+							</div>
+						</div>
+						<div class="col s7">
+							<div class="fb-title">会议区1</div>
+							<div class="fb-tim">
+								<div class="row">
+									<div class="col s6">
+										<div class="time disabled center-align">9:00-11:00</div>
+									</div>
+									<div class="col s6">
+										<div class="time abled center-align">11:00-13:00</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col s6">
+										<div class="time abled center-align">13:00-15:00</div>
+									</div>
+									<div class="col s6">
+										<div class="time abled center-align">15:00-17:00</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="fb fb2 z-depth-2">
+					<div class="row">
+						<div class="col s5">
+							<div class="fb-img center z-depth-2">
+								<img src="img/fb2.jpg" style="width:100%; height:100%;" alt="">
+							</div>
+						</div>
+						<div class="col s7">
+							<div class="fb-title">会议区2</div>
+							<div class="fb-tim">
+								<div class="row">
+									<div class="col s6">
+										<div class="time abled center-align">9:00-11:00</div>
+									</div>
+									<div class="col s6">
+										<div class="time abled center-align">11:00-13:00</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col s6">
+										<div class="time abled center-align">13:00-15:00</div>
+									</div>
+									<div class="col s6">
+										<div class="time abled center-align">15:00-17:00</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="fb fb3 z-depth-2" style="margin-bottom:0px;">
+					<div class="row">
+						<div class="col s5">
+							<div class="fb-img center z-depth-2">
+								<img src="img/fb3.jpg" style="width:100%; height:100%;" alt="">
+							</div>
+						</div>
+						<div class="col s7">
+							<div class="fb-title">会谈区</div>
+							<div class="fb-tim">
+								<div class="row">
+									<div class="col s6">
+										<div class="time abled center-align">9:00-11:00</div>
+									</div>
+									<div class="col s6">
+										<div class="time abled center-align">11:00-13:00</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col s6">
+										<div class="time abled center-align">13:00-15:00</div>
+									</div>
+									<div class="col s6">
+										<div class="time abled center-align">15:00-17:00</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 底部控制条，控制页面的跳转 -->
+	<!-- TODO:不同的页面不同的selected -->
+	<div id="bottom">
+		<div class="row">
+			<div id="fieldOrder" class="col s6 center-align func selected">租借场地</div>
+			<div id="myOrder" class="col s6 center-align func">我的租借</div>
+		</div>
+	</div>
+</html>
