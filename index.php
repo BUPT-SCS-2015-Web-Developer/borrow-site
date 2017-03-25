@@ -43,6 +43,9 @@
 	
 	}
 ?>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <?php
 	session_start();
@@ -63,6 +66,14 @@
  //    $date_id = array();
 	// $site_id = array();
 	// $site_name = array();
+
+    $date = array();
+    $date_id = array();
+	$site_id = array();
+	$site_name = array();
+	$flag1=1;
+	$flag2=2;
+
 	
 	// show_valid_days(5,5);
 	// $sites_n = get_sites();
@@ -70,14 +81,16 @@
 	// for($j=0;$j<$sites_n;$j++) {
 		?>
 	<!-- 	<div><?=$site_name[$j]?></div> -->
-<head>
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Document</title>
     <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/materialize.min.js"></script>
 	<script src="js/index.js"></script>
-	<script src="js/materialize.min.js"></script>
 	<script src="js/common.js"></script>
-
+	<script src="js/index.js"></script>
+	<script src="js/index2.js"></script>
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<link rel="stylesheet" href="css/common.css">
 </head>		
@@ -110,34 +123,43 @@
 				</ul>
 			</div>
 
+
 			<!-- 这里开始#field就是主题部分啦，.fb是三个部分的通用classname，分别是.fb1 .fb2 .fb3 -->
 			<!-- TODO：点击每一个.time的时候能获取到fb的编号，这样就能输出是什么区域了 -->
 			<!-- TODO：点击每个.time就会弹出模态框去要求用户核对信息，填写信息 -->
 			<ul id="field">
 				<li class="fb fb1 z-depth-2">
 					<div class="row">
-						<div class="col s5">
+						<div class="col l5 s12">
 							<div class="fb-img center z-depth-2">
 								<img src="img/fb1.jpg" style="width:100%; height:100%;" alt="">
 							</div>
 						</div>
-						<div class="col s7">
+						<div class="col l7 s12	">
 							<div class="fb-title">会议区1</div>
 							<div class="fb-tim">
 								<div class="row">
 									<div class="col s6">
-										<div class="time disabled center-align">9:00-11:00</div>
+										<div class="time disabled center-align">
+											<a href="#confirm">9:00-11:00</a> 
+										</div>
 									</div>
 									<div class="col s6">
-										<div class="time abled center-align">11:00-13:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">11:00-13:00</a>
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col s6">
-										<div class="time abled center-align">13:00-15:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">13:00-15:00</a>
+										</div>
 									</div>
 									<div class="col s6">
-										<div class="time abled center-align">15:00-17:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">15:00-17:00</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -146,28 +168,36 @@
 				</li>
 				<li class="fb fb2 z-depth-2">
 					<div class="row">
-						<div class="col s5">
+						<div class="col l5 s12">
 							<div class="fb-img center z-depth-2">
 								<img src="img/fb2.jpg" style="width:100%; height:100%;" alt="">
 							</div>
 						</div>
-						<div class="col s7">
+						<div class="col l7 s12">
 							<div class="fb-title">会议区2</div>
 							<div class="fb-tim">
 								<div class="row">
 									<div class="col s6">
-										<div class="time abled center-align">9:00-11:00</div>
+										<div class="time disabled center-align">
+											<a href="#confirm">9:00-11:00</a> 
+										</div>
 									</div>
 									<div class="col s6">
-										<div class="time abled center-align">11:00-13:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">11:00-13:00</a>
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col s6">
-										<div class="time abled center-align">13:00-15:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">13:00-15:00</a>
+										</div>
 									</div>
 									<div class="col s6">
-										<div class="time abled center-align">15:00-17:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">15:00-17:00</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -176,28 +206,36 @@
 				</li>
 				<li class="fb fb3 z-depth-2" style="margin-bottom:0px;">
 					<div class="row">
-						<div class="col s5">
+						<div class="col l5 s12">
 							<div class="fb-img center z-depth-2">
 								<img src="img/fb3.jpg" style="width:100%; height:100%;" alt="">
 							</div>
 						</div>
-						<div class="col s7">
+						<div class="col l7 s12">
 							<div class="fb-title">会谈区</div>
 							<div class="fb-tim">
 								<div class="row">
 									<div class="col s6">
-										<div class="time abled center-align">9:00-11:00</div>
+										<div class="time disabled center-align">
+											<a href="#confirm">9:00-11:00</a> 
+										</div>
 									</div>
 									<div class="col s6">
-										<div class="time abled center-align">11:00-13:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">11:00-13:00</a>
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col s6">
-										<div class="time abled center-align">13:00-15:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">13:00-15:00</a>
+										</div>
 									</div>
 									<div class="col s6">
-										<div class="time abled center-align">15:00-17:00</div>
+										<div class="time abled center-align">
+											<a href="#confirm">15:00-17:00</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -215,4 +253,30 @@
 			<div id="myOrder" class="col s6 center-align func">我的租借</div>
 		</div>
 	</div>
+	<div>
+		
+		<!-- Modal Structure -->
+  		<div id="confirm" class="modal">
+    		<div class="modal-content">
+      			<h4>模态标题</h4>
+  				<p>一堆文本</p>
+    		</div>
+   			<div class="modal-footer">
+      			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">同意</a>
+    		</div>
+  		</div>
+		<script>
+  			$(document).ready(function(){
+    		// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    		$('.modal').modal();
+  			});
+  		</script>
+	</div>
+				
+
+ 
 </html>
+
+
+
+
