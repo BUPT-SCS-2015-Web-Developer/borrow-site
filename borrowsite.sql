@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 03 月 21 日 19:15
--- 服务器版本: 5.5.53
--- PHP 版本: 5.4.45
+-- 生成日期: 2017 年 03 月 26 日 17:10
+-- 服务器版本: 5.5.47
+-- PHP 版本: 5.3.29
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- 数据库: `borrowsite`
 --
-CREATE DATABASE `borrowsite` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `borrowsite`;
 
 -- --------------------------------------------------------
 
@@ -34,8 +32,10 @@ CREATE TABLE IF NOT EXISTS `borrow_info` (
   `date` date NOT NULL,
   `period` varchar(11) NOT NULL,
   `borrow_id` varchar(11) NOT NULL,
+  `name` varchar(11) NOT NULL,
+  `contact` char(11) NOT NULL,
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 -- --------------------------------------------------------
 
