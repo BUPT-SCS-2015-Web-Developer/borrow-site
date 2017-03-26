@@ -240,8 +240,8 @@
 	<!-- TODO:不同的页面不同的selected -->
 	<div id="bottom">
 		<div class="row">
-			<div id="fieldOrder" class="col s6 center-align func selected">租借场地</div>
-			<div id="myOrder" class="col s6 center-align func">我的租借</div>
+			<a href="./index.php" id="fieldOrder" class="col s6 center-align func">租借场地</a>
+			<a href="./myorder.php" id="myOrder" class="col s6 center-align func selected">我的租借</a>
 		</div>
 	</div>
 		

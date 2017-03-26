@@ -8,17 +8,12 @@
 		$user_id=$_SESSION['usrid'];
 	}
 	
-	$sid = $_POST['site_id'];
-	$bdate = $_POST['borr_date'];
-	$bpd = $_POST['borr_period'];
+	$id=$_POST["id"];
 	try {
 		
-		$query = $DBH->prepare("delete from borrow_info where site_id = ? and date = ? and period = ? ");
-		$query->bindParam(1,$sid);
-		$query->bindParam(2,$bdate);
-		$query->bindParam(3,$bpd);
+		$query = $DBH->prepare("delete from borrow_info where pk_id = ? ");
+		$query->bindParam(1,$id);
 		$query->execute();	
-
 	}
 	catch(PDOException $e){
 		die($e->getMessage());
