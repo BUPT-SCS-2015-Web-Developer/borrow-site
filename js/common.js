@@ -3,7 +3,21 @@ $(function(){
 
 	$(window).resize(function(){
 		initwindow();
-	})
+	});
+
+	selectDate();
+	
+	$(".time.abled a").click(function(){
+		$(".modal-place").html($(this).parents('.fb-tim').siblings('.fb-title').text());
+		$(".modal-date").html($(".dateSelect.selected").text());
+		$(".modal-time").html($(this).text());
+		var fbClass=$(this).parents('.fb').attr("class");
+		var imgClass=fbClass.split(" ");
+		$(".modal-img img").attr("src","img/"+imgClass[1]+".jpg");
+	});
+	$(".time.disabled a").click(function(){
+		alert("该场地不可被预约");
+	});
 });
 function initwindow(){
 	$(".fb-img").width($(".fb .l5").width());
@@ -11,4 +25,15 @@ function initwindow(){
 	$(".fb").height($(".fb>.row").height());
 	$(".note").width($(".mainbar").width());
 	$(".note").css("padding-left",$(".note").width()-$(".note ul").width());
+	$(".time.disabled a").attr("href",'');
+}
+function selectDate(){
+	$(".dateSelect").click(function(){
+		$(".dateSelect.selected").removeClass("selected");
+		$(this).addClass("selected");
+		console.log($(".dateSelect.selected").text());
+	});	
+}
+function selectTime(){
+
 }

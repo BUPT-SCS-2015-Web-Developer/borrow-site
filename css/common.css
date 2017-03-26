@@ -17,11 +17,11 @@
 }
 #main{
 	background: rgb(220,209,169);
+	padding-top: 20px;
 	width: 100%;
 }
 #mainbar{
 	background: rgb(226,239,209);
-	padding: 0 20px;
 }
 .note{
 	width: 100%;
@@ -46,6 +46,24 @@
 	font-size: 14px;
 	line-height: 20px;
 	padding: 0 10px;
+}
+
+#date{
+}
+#date>.container>.row{
+	margin-bottom: 0;
+}
+.dateSelect.col{
+	cursor: pointer;
+	padding: 10px 0;
+	text-align: center;
+}
+.col.dateSelect.selected{
+	background: rgb(226,239,209);
+	border: 2px solid rgb(17,54,83);
+	border-bottom: 0;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
 }
 #field{
 	padding: 0 40px;

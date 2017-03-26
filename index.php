@@ -105,6 +105,19 @@
 
 	<!-- 主体部分 -->
 	<div id="main">
+		<div id="date">
+			<div class="container">
+				<div class="row">
+					<div class="col s1"></div>
+					<div class="dateSelect col s2 selected">3月20日</div>
+					<div class="dateSelect col s2">3月21日</div>
+					<div class="dateSelect col s2">3月22日</div>
+					<div class="dateSelect col s2">3月23日</div>
+					<div class="dateSelect col s2">3月24日</div>
+					<div class="col s1"></div>
+				</div>		
+			</div>					
+		</div>
 		<div id="mainbar" class="container">
 
 			<!-- note是显示不同类型预约情况是什么样的
@@ -122,7 +135,6 @@
 					</li>
 				</ul>
 			</div>
-
 
 			<!-- 这里开始#field就是主题部分啦，.fb是三个部分的通用classname，分别是.fb1 .fb2 .fb3 -->
 			<!-- TODO：点击每一个.time的时候能获取到fb的编号，这样就能输出是什么区域了 -->
@@ -253,25 +265,54 @@
 			<div id="myOrder" class="col s6 center-align func">我的租借</div>
 		</div>
 	</div>
-	<div>
 		
-		<!-- Modal Structure -->
-  		<div id="confirm" class="modal">
-    		<div class="modal-content">
-      			<h4>模态标题</h4>
-  				<p>一堆文本</p>
-    		</div>
-   			<div class="modal-footer">
-      			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">同意</a>
-    		</div>
-  		</div>
-		<script>
-  			$(document).ready(function(){
-    		// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    		$('.modal').modal();
-  			});
-  		</script>
+	<!-- Modal Structure -->
+	<div id="confirm" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4>请核对预约信息</h4>
+			<div class="row">
+				<div class="col l4">
+					<div class="modal-img">
+						<img src="" width="100%" height="100%" alt="">
+					</div>
+				</div>
+				<div class="col l8">
+					<div><span>预约地点：</span><span class="modal-place"></span></div>
+					<div><span>预约日期：</span><span class="modal-date"></span></div>
+					<div><span>预约时间：</span><span class="modal-time"></span></div>
+				</div>
+			</div>
+			<h5>若信息无误，请填写个人信息</h5>
+			<div class="row">
+				<form action="" class="col s12">
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text" id="icon_prefix" class="validate">
+							<label for="icon_prefix">姓名</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="tel" id="icon_telephone" class="validate">
+							<label for="icon_telephone">联系方式</label>
+						</div>
+						<div class="input-field col s12">
+							<input type="text" id="icon_reason" class="validate">
+							<label for="icon_reason">预约原因</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="cancel modal-action modal-close waves-effect waves-green btn-flat">取消</a>
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn blue lighten-1">提交</a>
+		</div>
 	</div>
+	<script>
+		$(document).ready(function(){
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+		});
+	</script>
 				
 
  
