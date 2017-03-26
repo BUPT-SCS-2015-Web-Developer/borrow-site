@@ -18,6 +18,7 @@
 #main{
 	background: rgb(220,209,169);
 	padding-top: 20px;
+	padding-bottom: 20px;
 	width: 100%;
 }
 #mainbar{
@@ -66,8 +67,7 @@
 	border-top-right-radius:10px;
 }
 #field{
-	padding: 0 40px;
-	padding-top: 40px;
+	padding: 40px;
 	width: 100%;
 }
 .fb{
@@ -164,4 +164,22 @@
 	.time{
 		font-size: 18px;
 	}
+}
+
+
+.mo{
+	background: #FFF;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 40px;
+}
+.mo>.row{
+	margin-bottom: 0;
+}
+.mo-img img{
+	position: relative;
+	top: -20px;
+}
+.mo-desc{
+	padding-left: 20px;
 }
