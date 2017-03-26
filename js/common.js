@@ -29,11 +29,48 @@ function initwindow(){
 }
 function selectDate(){
 	$(".dateSelect").click(function(){
+		switchdate(this);
+		
 		$(".dateSelect.selected").removeClass("selected");
 		$(this).addClass("selected");
-		console.log($(".dateSelect.selected").text());
+		//console.log($(".dateSelect.selected").text());
 	});	
 }
 function selectTime(){
 
+}
+function switchdate(thisday){
+	console.log(thisday);
+	var i;
+	for(i=0;i<5;i++){
+		if($(thisday).hasClass("day-"+i)){
+			console.log(i);
+			$(".fday-"+i).removeClass("hide");
+		}
+		else{
+			$(".fday-"+i).addClass("hide");
+		}
+	}
+	
+	/*$(".day-0").click(function(){
+		$("#field").addClass("hide");
+		$(".fday-0").removeClass("hide");
+	})
+	$(".day-1").click(function(){
+		$("#field").addClass("hide");
+		$(".fday-1").removeClass("hide");
+	})
+	$(".day-2").click(function(){
+		$("#field").addClass("hide");
+		$(".fday-2").removeClass("hide");
+	})
+	$(".day-3").click(function(){
+		$("#field").addClass("hide");
+		$(".fday-3").removeClass("hide");
+	})
+	$(".day-4").click(function(){
+		$("#field").addClass("hide");
+		$(".fday-4").removeClass("hide");
+	})
+	*/
 }

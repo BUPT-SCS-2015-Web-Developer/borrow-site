@@ -75,13 +75,9 @@
 	$flag2=2;
 
 	
-	// show_valid_days(5,5);
-	// $sites_n = get_sites();
-	
-	// for($j=0;$j<$sites_n;$j++) {
-		?>
-	<!-- 	<div><?=$site_name[$j]?></div> -->
-
+	show_valid_days(5,5);
+	$sites_n = get_sites();
+	?>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Document</title>
@@ -95,7 +91,6 @@
 	<link rel="stylesheet" href="css/common.css">
 </head>		
 <html>
-	<!-- 之前有部分PHP控制的内容被我转移到了PHPcontrol.html,当时尚不清楚设计如何就先将代码移动过去了 -->
 	<!-- 放标题的部分，也方便以后加新功能 -->
 	<div id="top">
 		<div class="container">
@@ -109,11 +104,22 @@
 			<div class="container">
 				<div class="row">
 					<div class="col s1"></div>
-					<div class="dateSelect col s2 selected">3月20日</div>
-					<div class="dateSelect col s2">3月21日</div>
-					<div class="dateSelect col s2">3月22日</div>
-					<div class="dateSelect col s2">3月23日</div>
-					<div class="dateSelect col s2">3月24日</div>
+					<?php
+					$i=0;
+					foreach($date as $eachdate) {
+						if($i==0){
+						?>
+							<div class="dateSelect col s2 selected day-<?=$i?>"><?=$eachdate;?></div>
+						<?php
+						}else{
+							?>
+							<div class="dateSelect col s2 day-<?=$i?>"><?=$eachdate;?></div>
+							<?php
+						}
+							
+						$i++;
+					}
+					?>
 					<div class="col s1"></div>
 				</div>		
 			</div>					
@@ -137,124 +143,95 @@
 			</div>
 
 			<!-- 这里开始#field就是主题部分啦，.fb是三个部分的通用classname，分别是.fb1 .fb2 .fb3 -->
+			<!--将5天的预约信息一次echo出来，根据不同选择hide和show(js控制)-->
 			<!-- TODO：点击每一个.time的时候能获取到fb的编号，这样就能输出是什么区域了 -->
 			<!-- TODO：点击每个.time就会弹出模态框去要求用户核对信息，填写信息 -->
-			<ul id="field">
-				<li class="fb fb1 z-depth-2">
+			
+			<?php
+				$j=0;
+				foreach($date as $eachdate) {
+					if($j==0){
+						?>
+					<ul id="field" class="fday-<?=$j?>">
+					<?php
+					}
+					else{
+						?>
+						<ul id="field" class="fday-<?=$j?> hide">
+						<?php
+					}
+					for($k=0;$k<$sites_n;$k++) {
+						?>
+					<li class="fb fb<?=$k+1?> z-depth-2">
 					<div class="row">
 						<div class="col l5 s12">
 							<div class="fb-img center z-depth-2">
-								<img src="img/fb1.jpg" style="width:100%; height:100%;" alt="">
+								<img src="img/fb<?=$k+1?>.jpg" style="width:100%; height:100%;" alt="">
 							</div>
 						</div>
 						<div class="col l7 s12	">
-							<div class="fb-title">会议区1</div>
+							<div class="fb-title"><?=$site_name[$k]?></div>
 							<div class="fb-tim">
 								<div class="row">
+								<?php
+								for($i=0;$i<4;$i++){
+									try{
+										$query = $DBH->prepare("select count(*),borrow_id from borrow_info where site_id=? and date=? and period = ?");
+										$query->bindParam(1,$site_id[$k]);
+										$query->bindParam(2,$date_id[$j]);
+										$query->bindParam(3,$i);
+										$query->execute();
+										$result=$query->fetch();
+										$ifborred=$result['count(*)'];
+									
+									}catch(PDOException $e){
+										die($e->getMessage());
+									}
+									if($ifborred == 0){
+								?>
+									<div class="col s6">
+										<div class="time abled center-align">
+											<a href="#confirm" id="s<?=$site_id[$k]?>-d<?=$date_id[$j]?>-p<?=$i?>"><?=9+2*$i?>点~<?=11+2*$i?>点</a> 
+										</div>
+									</div>
+								
+								<?php
+									}else{
+										?>
 									<div class="col s6">
 										<div class="time disabled center-align">
-											<a href="#confirm">9:00-11:00</a> 
+											<a href="#confirm" id="s<?=$site_id[$k]?>-d<?=$date_id[$j]?>-p<?=$i?>"><?=9+2*$i?>点~<?=11+2*$i?>点</a> 
 										</div>
 									</div>
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">11:00-13:00</a>
+								<?php
+									}
+									if($i==1){
+										?>
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">13:00-15:00</a>
-										</div>
-									</div>
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">15:00-17:00</a>
-										</div>
-									</div>
+										<div class="row">
+										<?php
+									}
+									?>
+								<?php
+							}
+								?>
 								</div>
 							</div>
 						</div>
 					</div>
 				</li>
-				<li class="fb fb2 z-depth-2">
-					<div class="row">
-						<div class="col l5 s12">
-							<div class="fb-img center z-depth-2">
-								<img src="img/fb2.jpg" style="width:100%; height:100%;" alt="">
-							</div>
-						</div>
-						<div class="col l7 s12">
-							<div class="fb-title">会议区2</div>
-							<div class="fb-tim">
-								<div class="row">
-									<div class="col s6">
-										<div class="time disabled center-align">
-											<a href="#confirm">9:00-11:00</a> 
-										</div>
-									</div>
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">11:00-13:00</a>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">13:00-15:00</a>
-										</div>
-									</div>
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">15:00-17:00</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="fb fb3 z-depth-2" style="margin-bottom:0px;">
-					<div class="row">
-						<div class="col l5 s12">
-							<div class="fb-img center z-depth-2">
-								<img src="img/fb3.jpg" style="width:100%; height:100%;" alt="">
-							</div>
-						</div>
-						<div class="col l7 s12">
-							<div class="fb-title">会谈区</div>
-							<div class="fb-tim">
-								<div class="row">
-									<div class="col s6">
-										<div class="time disabled center-align">
-											<a href="#confirm">9:00-11:00</a> 
-										</div>
-									</div>
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">11:00-13:00</a>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">13:00-15:00</a>
-										</div>
-									</div>
-									<div class="col s6">
-										<div class="time abled center-align">
-											<a href="#confirm">15:00-17:00</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
+					<?php
+					}
+					?>
+				</ul>
+						<?php
+				
+					
+					$j++;
+				}
+			?>
+				
+			
 		</div>
 	</div>
 	<!-- 底部控制条，控制页面的跳转 -->
@@ -311,6 +288,7 @@
 		$(document).ready(function(){
 			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
 			$('.modal').modal();
+			
 		});
 	</script>
 				
