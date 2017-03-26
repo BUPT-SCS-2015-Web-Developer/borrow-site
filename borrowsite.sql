@@ -54,9 +54,9 @@ CREATE TABLE IF NOT EXISTS `site_info` (
 --
 
 INSERT INTO `site_info` (`site_id`, `name`) VALUES
-(1, '场地1'),
-(2, '场地2'),
-(3, '场地3');
+(1, '会议区1'),
+(2, '会议区2'),
+(3, '会谈区');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
