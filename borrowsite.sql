@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 03 月 26 日 17:10
+-- 生成日期: 2017 年 03 月 26 日 23:47
 -- 服务器版本: 5.5.47
 -- PHP 版本: 5.3.29
 
@@ -34,8 +34,16 @@ CREATE TABLE IF NOT EXISTS `borrow_info` (
   `borrow_id` varchar(11) NOT NULL,
   `name` varchar(11) NOT NULL,
   `contact` char(11) NOT NULL,
+  `reason` varchar(1024) NOT NULL,
   PRIMARY KEY (`pk_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=70 ;
+
+--
+-- 转存表中的数据 `borrow_info`
+--
+
+INSERT INTO `borrow_info` (`pk_id`, `site_id`, `date`, `period`, `borrow_id`, `name`, `contact`, `reason`) VALUES
+(69, 2, '2017-04-01', '1', '988793', '如太', '范文峰', '峰峰');
 
 -- --------------------------------------------------------
 
