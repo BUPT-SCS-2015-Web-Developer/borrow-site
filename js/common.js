@@ -46,7 +46,11 @@ function switchdate(thisday){
 	var i;
 	for(i=0;i<5;i++){
 		if($(thisday).hasClass("day-"+i)){
+<<<<<<< HEAD
 			//console.log(i);
+=======
+	//		console.log(i);
+>>>>>>> origin/master
 			$(".fday-"+i).removeClass("hide");
 		}
 		else{
