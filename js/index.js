@@ -20,8 +20,17 @@ $("#submit").click(function (){
 		complete:function(data){
 			/*if (data.responseText==0) $("#"+str).html("已预约");
 			else alert("申请失败");*/
-			if (data.responseText==0) {alert("申请成功");location.reload();}
-				else alert("申请失败");
+			console.log(data.responseText);
+			if (data.responseText==0) 
+			{
+				alert("申请成功");
+			//	location.reload();
+			}
+			else if(data.responseText==-1){
+				alert("你还有未完成的场地租借请求，一次只能有一个租借请求哦");
+			}else{
+				 alert("申请失败,可能有人先你一步预约了哦");
+			}
 			
 		
 		}
