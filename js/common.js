@@ -1,3 +1,4 @@
+var imid;
 $(function(){
 	initwindow();
 
@@ -8,6 +9,7 @@ $(function(){
 	selectDate();
 	
 	$(".time.abled a").click(function(){
+		imid=$(this).attr("id");
 		$(".modal-place").html($(this).parents('.fb-tim').siblings('.fb-title').text());
 		$(".modal-date").html($(".dateSelect.selected").text());
 		$(".modal-time").html($(this).text());

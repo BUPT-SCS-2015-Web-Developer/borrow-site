@@ -138,6 +138,7 @@
 					<li class="status sta2 right">
 						<div class="sta2-smp left"></div>
 						<div class="sta-desc sta2-desc right">可预约场地</div>
+
 					</li>
 				</ul>
 			</div>
@@ -234,6 +235,7 @@
 			
 		</div>
 	</div>
+
 	<!-- 底部控制条，控制页面的跳转 -->
 	<!-- TODO:不同的页面不同的selected -->
 	<div id="bottom">
@@ -281,7 +283,8 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#!" class="cancel modal-action modal-close waves-effect waves-green btn-flat">取消</a>
-			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn blue lighten-1">提交</a>
+			<button href="#!" id="submit" class="modal-action modal-close waves-effect waves-green btn blue lighten-1">提交</button>
+				
 		</div>
 	</div>
 	<script>
@@ -292,7 +295,7 @@
 		});
 	</script>
 				
-
+<script src="js/index.js"></script>
  
 </html>
 
