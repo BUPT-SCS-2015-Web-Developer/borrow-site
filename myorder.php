@@ -55,11 +55,15 @@
 				<li class="mo z-depth-2">
 					<div class="row">
 						<div class="mo-img col l4 s12">
+<<<<<<< HEAD
 							<?php if (!empty($result)) { ?>
 							<img class="z-depth-3" src="img/fb<?=$result["site_id"]?>.jpg" width="100%" height="100%" alt="">
 							<?php } else {?>
 							<img class="z-depth-3" src="img/fb1.jpg" width="100%" height="100%" alt="">
 							<?php } ?>
+=======
+							<img class="z-depth-3" src="img/fb<?=$result["site_id"]?>.jpg" width="100%" height="100%" alt="">
+>>>>>>> origin/master
 						</div>
 						<div class="col l8 s12">
 							<div class="mo-desc">

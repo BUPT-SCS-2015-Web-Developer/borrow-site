@@ -24,7 +24,11 @@ $("#submit").click(function (){
 			if (data.responseText==0) 
 			{
 				alert("申请成功");
+<<<<<<< HEAD
 				location.reload();
+=======
+			//	location.reload();
+>>>>>>> origin/master
 			}
 			else if(data.responseText==-1){
 				alert("你还有未完成的场地租借请求，一次只能有一个租借请求哦");
