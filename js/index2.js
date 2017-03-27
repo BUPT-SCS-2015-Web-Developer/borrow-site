@@ -1,17 +1,13 @@
-$(".borr-cancel").click(function (){
-	var st = $(this).attr('id');
-	borr_info = st.match(/\d+/g);
-	//$("#"+str).attr("disabled","disabled");
+	$("#cancel1").click(function (){
+	var id=<?=$result["pk_id"]?>
 	$.ajax({
 		url:"borr_cancel.php",
 		type:"POST",
 		data:{
-			site_id:borr_info[0],
-			borr_date:borr_info[1],
-			borr_period:borr_info[2],
+			id:id
 			},
-		complete:function(){
-			$("#"+st).html("取消成功");
+		success:function(){
+			alert("取消成功");
 		}
 	})
 })
